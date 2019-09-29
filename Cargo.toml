@@ -11,9 +11,9 @@ categories = []
 
 [dependencies]
 regex            = "1"
-url              = "1"
-html5ever        = "0.22"
-lazy_static      = "1.0"
+url              = "2.1.0"
+html5ever        = "0.24.1"
+lazy_static      = "1.4.0"
 
 [dependencies.reqwest]
 version = "0.9"
