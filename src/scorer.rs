@@ -87,12 +87,12 @@ pub fn is_candidate(handle: Handle) -> bool {
         return false;
     }
     let n: &str = &dom::get_tag_name(handle.clone()).unwrap_or_default();
+
     match n {
         "p" => true,
-        "div" | "article" | "center" | "section" => !dom::has_nodes(
-            handle.clone(),
-            &BLOCK_CHILD_TAGS.iter().copied().map(|t| t).collect(),
-        ),
+        "div" | "article" | "center" | "section" => {
+            !dom::has_nodes(handle.clone(), &BLOCK_CHILD_TAGS)
+        }
         _ => false,
     }
 }
