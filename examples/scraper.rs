@@ -7,6 +7,12 @@ use std::{fs, io};
 use std::fs::File;
 use std::io::prelude::*;
 
+// TODO:
+//  1. try to integrate with html2md in the future
+//     https://github.com/Adonai/html2md
+//  2. seems neight readability and html2md nor are very robust
+//
+
 fn main() {
     let url = "https://blog.logrocket.com/rust-serialization-whats-ready-for-production-today/";
     match extractor::scrape(&url) {
