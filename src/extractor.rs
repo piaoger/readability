@@ -28,7 +28,7 @@ pub struct Product {
 
 #[cfg(feature = "reqwest")]
 pub fn scrape(url: &str) -> Result<Product, Error> {
-    let client = reqwest::Client::builder()
+    let client = reqwest::blocking::Client::builder()
         .timeout(Duration::new(30, 0))
         .build()?;
     let mut res = client.get(url).send()?;

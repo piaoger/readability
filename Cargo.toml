@@ -18,8 +18,9 @@ markup5ever_rcdom = "0.1.0"
 lazy_static      = "1.4.0"
 
 [dependencies.reqwest]
-version = "0.9"
+version = "0.10"
 optional = true
+features = ["blocking"]
 
 [features]
 default = ["reqwest"]

@@ -1,4 +1,3 @@
-
 use readability::extractor;
 
 use std::os::raw::c_void;
@@ -9,9 +8,8 @@ use std::fs::File;
 use std::io::prelude::*;
 
 fn main() {
-    match extractor::scrape(
-        "https://blog.logrocket.com/rust-serialization-whats-ready-for-production-today/",
-    ) {
+    let url = "https://blog.logrocket.com/rust-serialization-whats-ready-for-production-today/";
+    match extractor::scrape(&url) {
         Ok(product) => {
             println!("------- html ------");
             println!("{}", product.content);
