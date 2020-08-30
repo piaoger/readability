@@ -1,7 +1,7 @@
-use html5ever::rcdom::NodeData::{Element, Text};
-use html5ever::rcdom::{Handle, Node};
 use html5ever::tendril::StrTendril;
 use html5ever::Attribute;
+use markup5ever_rcdom::NodeData::{Element, Text};
+use markup5ever_rcdom::{Handle, Node};
 use std::rc::Rc;
 use std::str::FromStr;
 
@@ -101,6 +101,7 @@ pub fn extract_text(handle: Handle, text: &mut String, deep: bool) {
         match c.data {
             Text { ref contents } => {
                 text.push_str(contents.borrow().trim());
+                text.push_str(" ");
             }
             Element { .. } => {
                 if deep {

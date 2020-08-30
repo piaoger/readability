@@ -1,5 +1,6 @@
-extern crate readability;
-extern crate url;
+// extern crate readability;
+// extern crate url;
+use readability;
 
 use std::fs::File;
 use url::Url;

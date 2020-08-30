@@ -1,12 +1,15 @@
-use dom;
-use error::Error;
-use html5ever::rcdom::RcDom;
+use crate::dom;
+use crate::error::Error;
+use crate::scorer;
+use crate::scorer::Candidate;
+
 use html5ever::tendril::stream::TendrilSink;
 use html5ever::{parse_document, serialize};
+use markup5ever_rcdom::RcDom;
+use markup5ever_rcdom::SerializableHandle;
 #[cfg(feature = "reqwest")]
 use reqwest;
-use scorer;
-use scorer::Candidate;
+
 use std::cell::Cell;
 use std::collections::BTreeMap;
 use std::default::Default;
@@ -76,7 +79,11 @@ where
     let node = top_candidate.node.clone();
     scorer::clean(&mut dom, Path::new(id), node.clone(), url, &candidates);
 
-    serialize(&mut bytes, &node, Default::default()).ok();
+    let serializable: SerializableHandle = node.clone().into();
+
+    serialize(&mut bytes, &serializable, Default::default()).ok();
+
+    // serialize(&mut bytes, &node, Default::default()).ok();
     let content = String::from_utf8(bytes).unwrap_or_default();
 
     let mut text: String = String::new();
