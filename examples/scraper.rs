@@ -13,6 +13,8 @@ use std::io::prelude::*;
 //  2. seems neither readability nor html2md are very robust
 //
 
+// https://ashiamonetb.medium.com/ya-protagonists-still-arent-like-other-girls-5b0806813540
+// https://blog.logrocket.com/rust-serialization-whats-ready-for-production-today/
 fn main() {
     let url = "https://blog.logrocket.com/rust-serialization-whats-ready-for-production-today/";
     match extractor::scrape(&url) {

@@ -7,17 +7,20 @@ use html5ever::tendril::stream::TendrilSink;
 use html5ever::{parse_document, serialize};
 use markup5ever_rcdom::RcDom;
 use markup5ever_rcdom::SerializableHandle;
-#[cfg(feature = "reqwest")]
-use reqwest;
 
 use std::cell::Cell;
 use std::collections::BTreeMap;
 use std::default::Default;
 use std::io::Read;
 use std::path::Path;
+
+use url::Url;
+
 #[cfg(feature = "reqwest")]
 use std::time::Duration;
-use url::Url;
+
+#[cfg(feature = "reqwest")]
+use reqwest;
 
 #[derive(Debug)]
 pub struct Product {
@@ -39,6 +42,32 @@ pub fn scrape(url: &str) -> Result<Product, Error> {
         Err(Error::Unexpected)
     }
 }
+
+/*
+
+// let's support asnc later
+
+#[cfg(feature = "reqwest")]
+pub async fn scrape(url: &str) -> Result<Product, Error> {
+    let client = Client::builder()
+        .timeout(Duration::new(30, 0))
+        .build()?;
+    scrape_with_client(url, &client).await
+}
+
+#[cfg(feature = "reqwest")]
+pub async fn scrape_with_client(url: &str, client: &Client) -> Result<Product, Error> {
+    let res = client.get(url)
+        .send()
+        .await?;
+    if res.status().is_success() {
+        let url = Url::parse(url)?;
+        extract(&mut res.text().await?.as_bytes(), &url)
+    } else {
+        Err(Error::Unexpected)
+    }
+}
+*/
 
 pub fn extract<R>(input: &mut R, url: &Url) -> Result<Product, Error>
 where

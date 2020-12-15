@@ -12,10 +12,10 @@ edition = "2018"
 
 [dependencies]
 regex            = "1"
-url              = "2.1.0"
-html5ever = "0.25.1"
-markup5ever_rcdom = "0.1.0"
-lazy_static      = "1.4.0"
+url              = "2.1"
+html5ever = "0.25"
+markup5ever_rcdom = "0.1"
+lazy_static      = "1.4"
 
 [dependencies.reqwest]
 version = "0.10"
